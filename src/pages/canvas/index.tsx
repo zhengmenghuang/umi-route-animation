@@ -6,7 +6,7 @@ import React from 'react';
 import styles from './index.less'
 
 export default class Index extends  React.Component{
-  private myRef: React.RefObject<HTMLCanvasElement>;
+  myRef: React.RefObject<HTMLCanvasElement>;
   constructor(props: any) {
     super(props);
     this.myRef = React.createRef();
