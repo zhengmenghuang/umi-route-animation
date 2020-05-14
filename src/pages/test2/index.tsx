@@ -16,8 +16,8 @@ function mapStateToProps(state: any) {
   };
 }
 
-@connect(mapStateToProps)
-export default class Test2 extends React.Component {
+
+class Test2 extends React.Component {
 
   back() {
     router.goBack()
@@ -42,3 +42,5 @@ export default class Test2 extends React.Component {
     );
   }
 }
+
+export default connect(mapStateToProps)(Test2);
