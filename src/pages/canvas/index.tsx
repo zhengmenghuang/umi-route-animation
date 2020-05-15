@@ -6,6 +6,8 @@ import React from 'react';
 import styles from './index.less';
 import { State } from './index.d'
 
+let timer: any = null;
+
 export default class Index extends  React.Component<{}, State>{
   canvasRef: React.RefObject<HTMLCanvasElement>;
   boardAreaRef: React.RefObject<HTMLDivElement>;
@@ -47,22 +49,27 @@ export default class Index extends  React.Component<{}, State>{
 
   // 画笔移动
   onTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    if (!this.ctx) return;
     const event = e.touches[0];
-    // 设置画笔颜色
-    this.ctx.strokeStyle = '#ff0000';
-    // 设置线条宽度
-    this.ctx.lineWidth = 2;
-    // 开始绘画
-    this.ctx.beginPath();
-    this.ctx.moveTo(this.currentPostion.x, this.currentPostion.y);
-    this.ctx.lineTo(event.clientX, event.clientY);
-    this.ctx.stroke();
+    if (!timer) {
+      timer = setTimeout(() => {
+        timer = null;
+        if (!this.ctx) return;
+        // 设置画笔颜色
+        this.ctx.strokeStyle = '#ff0000';
+        // 设置线条宽度
+        this.ctx.lineWidth = 2;
+        // 开始绘画
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.currentPostion.x, this.currentPostion.y);
+        this.ctx.lineTo(event.clientX, event.clientY);
+        this.ctx.stroke();
 
-    this.currentPostion = {
-      x: event.clientX,
-      y: event.clientY
-    };
+        this.currentPostion = {
+          x: event.clientX,
+          y: event.clientY
+        };
+      }, 25)
+    }
   }
 
   // 画笔结束
