@@ -33,3 +33,6 @@ git remote add origin https://github.com/zhengmenghuang/umi-route-animation.git 
 git add . <br/>
 git commit <br/>
 git push -u origin master <br/>
+
+# umi3 例子
+https://github.com/zhengmenghuang/chart-room.git
